@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,9 +23,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodType } from "zod";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
-import ImageUpload from "@/components/ImageUpload";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Loader } from "lucide-react";
 
 interface Props<T extends FieldValues> {
   schema: ZodType<T>;
@@ -43,6 +42,7 @@ const AuthForm = <T extends FieldValues>({
 }: Props<T>) => {
   const isSignIn = type === "SIGN_IN";
   const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
@@ -50,6 +50,7 @@ const AuthForm = <T extends FieldValues>({
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
+    setIsLoading(true);
     const result = await onSubmit(data);
     if (result.success) {
       toast.success(
@@ -58,7 +59,9 @@ const AuthForm = <T extends FieldValues>({
           : "You have successfully signed up",
       );
       router.push("/");
+      setIsLoading(false);
     } else {
+      setIsLoading(false);
       toast.error(isSignIn ? "Error signing in" : "Error signing up", {
         description: result.error,
       });
@@ -91,18 +94,12 @@ const AuthForm = <T extends FieldValues>({
                     {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
                   </FormLabel>
                   <FormControl>
-                    {field.name === "universityCard" ? (
-                      <ImageUpload onFileChange={field.onChange} />
-                    ) : (
-                      <Input
-                        required={true}
-                        type={
-                          FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
-                        }
-                        {...field}
-                        className="form-input"
-                      />
-                    )}
+                    <Input
+                      required={true}
+                      type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]}
+                      {...field}
+                      className="form-input"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -110,8 +107,8 @@ const AuthForm = <T extends FieldValues>({
             />
           ))}
 
-          <Button type="submit" className="form-btn">
-            {isSignIn ? "Sign In" : "Sign Up"}
+          <Button type="submit" className="form-btn" disabled={isLoading}>
+            {isLoading ? <Loader /> : isSignIn ? "Sign In" : "Sign Up"}
           </Button>
         </form>
       </Form>

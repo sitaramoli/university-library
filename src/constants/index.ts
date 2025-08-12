@@ -3,7 +3,6 @@ export const navigationLinks = [
     href: "/library",
     label: "Library",
   },
-
   {
     img: "/icons/user.svg",
     selectedImg: "/icons/user-fill.svg",
@@ -43,15 +42,12 @@ export const adminSideBarLinks = [
 export const FIELD_NAMES = {
   fullName: "Full Name",
   email: "Email",
-  universityId: "University ID Number",
   password: "Password",
-  universityCard: "Upload University ID Card",
 };
 
 export const FIELD_TYPES = {
   fullName: "text",
   email: "email",
-  universityId: "number",
   password: "password",
 };
 

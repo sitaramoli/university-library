@@ -35,7 +35,7 @@ export const signInWithCredentials = async (
 };
 
 export const signUp = async (params: AuthCredentials) => {
-  const { fullName, email, password, universityId, universityCard } = params;
+  const { fullName, email, password } = params;
   const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
   const { success } = await ratelimit.limit(ip);
   if (!success) return redirect("/too-fast");
@@ -58,10 +58,8 @@ export const signUp = async (params: AuthCredentials) => {
       fullName,
       email,
       password: hashedPassword,
-      universityId,
-      universityCard,
     });
-    // await signInWithCredentials({ email, password });
+    await signInWithCredentials({ email, password });
     return { success: true };
   } catch (error) {
     console.log(error, "SignUp failed");

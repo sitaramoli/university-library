@@ -6,8 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // only for DEV
-// NODE_TLS_REJECT_UNAUTHORIZED=0 npx shadcn@latest add form
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const ibmPlexSans = localFont({
   src: [

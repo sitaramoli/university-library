@@ -1,5 +1,5 @@
 {
-  "id": "95bcd4ee-1ff4-4159-95e8-53242e80272a",
+  "id": "77a17fad-7403-43ad-953a-d8b6fc74d4c1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -27,20 +27,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "university_id": {
-          "name": "university_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
         "password": {
           "name": "password",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "university_card": {
-          "name": "university_card",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -92,13 +80,6 @@
           "nullsNotDistinct": false,
           "columns": [
             "email"
-          ]
-        },
-        "users_university_id_unique": {
-          "name": "users_university_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "university_id"
           ]
         }
       },
