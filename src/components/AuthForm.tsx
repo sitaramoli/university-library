@@ -108,7 +108,13 @@ const AuthForm = <T extends FieldValues>({
           ))}
 
           <Button type="submit" className="form-btn" disabled={isLoading}>
-            {isLoading ? <Loader /> : isSignIn ? "Sign In" : "Sign Up"}
+            {isLoading ? (
+              <Loader className="animate-spin" />
+            ) : isSignIn ? (
+              "Sign In"
+            ) : (
+              "Sign Up"
+            )}
           </Button>
         </form>
       </Form>

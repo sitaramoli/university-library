@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "seed": "npx tsx src/database/seed.ts",
     "db:generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx drizzle-kit generate",
     "db:migrate": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx drizzle-kit migrate",
     "db:studio": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx drizzle-kit studio"
@@ -23,6 +24,7 @@
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
     "imagekit": "^6.0.0",
@@ -32,6 +34,7 @@
     "next-auth": "^5.0.0-beta.25",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
+    "react-colorful": "^5.6.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
     "sonner": "^2.0.1",
@@ -41,7 +44,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -50,7 +53,7 @@
     "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "prettier": "^3.5.1",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5"
   }
 }
