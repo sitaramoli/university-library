@@ -31,8 +31,11 @@ export const signInWithCredentials = async (
     }
     return { success: true };
   } catch (error) {
-    console.log(error, "SignIn failed");
-    return { success: false, error: "SignIn failed" };
+    console.log("SignIn failed", error);
+    return {
+      success: false,
+      error: "Please check your credentials and try again",
+    };
   }
 };
 
@@ -67,8 +70,8 @@ export const signUp = async (params: AuthCredentials) => {
     });
     await signInWithCredentials({ email, password });
     return { success: true };
-  } catch (error) {
-    console.log(error, "SignUp failed");
-    return { success: false, error: "SignUp failed" };
+  } catch (error: any) {
+    console.log("SignUp failed", error);
+    return { success: false, error: error.message };
   }
 };
